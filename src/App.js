@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <QuoteBox />
+    </div>
+  );
+}
+
+var quotes = [{quote: "How you doin?", author: "Joey Trevioni"}]
+var images = {"Joey Trevioni": "https://static.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg/revision/latest?cb=20180424154245"}
+function QuoteBox() {
+  return (
+    <div className="quote-box" id="quote-box">
+      <h3 className="quote">{quotes[0].quote}</h3>
+      <p className="author">{quotes[0].author}</p>
+      <img src="https://static.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg"/>
     </div>
   );
 }
