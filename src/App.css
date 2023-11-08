@@ -1,5 +1,63 @@
+:root{
+  --friends-blue: #00009e;
+  --friends-tan: #fff580;
+  --friends-lightblue: #42a2d6;
+  --friends-red: #9a0006;
+  --friends-yellow: #ffdc00;
+  --friends-violet: #a876e6;
+  --friends-orange: #ff4238;
+}
+@font-face {
+  font-family: friendsFont;
+  src: url("../public/FRIENDS_.TTF");
+}
+
 .App {
   text-align: center;
+}
+#app{
+  width: 100%;
+  height: 100vh;
+  background: url("https://www.thewordfinder.com/friends-font-generator/assets/images/friends-bg.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.quote-box{
+  width: 550px;
+  height: 200px;
+  background-color: rgba(0, 0, 0, .7);
+  display: flex;
+  align-items:center;
+  border-radius: 40px;
+  padding: 50px;
+  
+}
+
+.quote-text{
+  width: 60%;
+  color: white;
+  font-family: friendsFont;
+}
+.quote-text .quote{
+  font-size: 30px;
+  font-family: friendsFont;
+}
+.quote-text .author{
+  font-size: 20px;
+}
+.portrait-container{
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: 4px solid var(--friends-red);
+  overflow: hidden;
+}
+.portrait-image{
+  width: 100%;
+  height: auto;
 }
 
 .App-logo {
