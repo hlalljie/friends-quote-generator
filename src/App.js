@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-
+// test comment
 var colors = [
   {color: "#42a2d6", buttonColor: "color", name: "lightblue"}, // lightblue
   {color: "#fff580", buttonColor: "color", name: "tan"}, // tan
