@@ -26,20 +26,27 @@
 }
 
 .quote-box{
-  width: 550px;
-  height: 200px;
+  min-width: 550px;
+  width: 70%;
+  min-height: 200px;
   background-color: rgba(0, 0, 0, .7);
-  display: flex;
-  align-items:center;
+  
   border-radius: 40px;
   padding: 50px;
   
 }
 
+.text-image-container{
+  display: flex;
+  align-items:center;
+}
+
 .quote-text{
+  flex:2;
   width: 60%;
   color: white;
   font-family: friendsFont;
+  padding-right: 20px;
 }
 .quote-text .quote{
   font-size: 30px;
@@ -49,15 +56,35 @@
   font-size: 20px;
 }
 .portrait-container{
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
+  border-radius: 100%;
   border: 4px solid var(--friends-red);
+
+  flex: 1;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
   overflow: hidden;
+  
+
+}
+
+.portrait-wrapper{
+  width: 100%;
+  padding-top: 100%; /* Creates a square container with 1:1 aspect ratio */
+  position: relative;
+  overflow: hidden;
+
 }
 .portrait-image{
+  
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
 .App-logo {
