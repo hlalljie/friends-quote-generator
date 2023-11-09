@@ -44,7 +44,8 @@ class QuoteBox extends React.Component {
     super(props);
     this.state = {
       quoteIndex: Math.floor(Math.random() * (quotes.length))-1,
-      colorIndex: 0
+      borderColorIndex: 0,
+      buttonColorIndex: 0
     }
     this.handleNewRandomQuote = this.handleNewRandomQuote.bind(this);
     this.handleNewRandomQuote();
@@ -53,24 +54,37 @@ class QuoteBox extends React.Component {
   handleNewRandomQuote(){
     this.setState((function(prevState){
       //Find Random Quote Index
-      let randQuoteNum = Math.floor(Math.random() * (quotes.length-1));
-      if (randQuoteNum >= prevState.quoteIndex){
-        randQuoteNum++;
+      let randQuoteColorIndex = Math.floor(Math.random() * (quotes.length-1));
+      if (randQuoteColorIndex >= prevState.quoteIndex){
+        randQuoteColorIndex++;
       }
-      if (randQuoteNum >= quotes.length){
-        randQuoteNum = quotes.length % randQuoteNum;
+      if (randQuoteColorIndex >= quotes.length){
+        randQuoteColorIndex = quotes.length % randQuoteColorIndex;
       }
-      // Find Random Border color index
-      let randColorNum = Math.floor(Math.random() * (colors.length-1));
-      if (randColorNum >= prevState.colorIndex){
-        randColorNum++;
+
+      // Find Random Border Color Index
+      let randBorderColorIndex = Math.floor(Math.random() * (colors.length-1));
+      if (randBorderColorIndex >= prevState.borderColorIndex){
+        randBorderColorIndex++;
       }
-      if (randColorNum >= colors.length){
-        randColorNum = colors.length % randColorNum;
+      if (randBorderColorIndex >= colors.length){
+        randBorderColorIndex = colors.length % randBorderColorIndex;
       }
+
+      // Find Button Color Index
+      let randButtonColorIndex = Math.floor(Math.random() * (colors.length-1));
+      if (randButtonColorIndex >= prevState.borderColorIndex){
+        randButtonColorIndex++;
+      }
+      if (randButtonColorIndex >= colors.length){
+        randButtonColorIndex = colors.length % randButtonColorIndex;
+      }
+
       return {
-        quoteIndex: randQuoteNum,
-        colorIndex: randColorNum
+        quoteIndex: randQuoteColorIndex,
+        borderColorIndex: randBorderColorIndex,
+        buttonColorIndex: randButtonColorIndex
+
       };
     }));
   }
@@ -83,17 +97,20 @@ class QuoteBox extends React.Component {
     let author = renderQuote.author
 
     // Image props
-    let currentColor = colors[this.state.colorIndex];
+    let borderColor = colors[this.state.borderColorIndex];
     let currentImage = images[renderQuote.author].image;
     let imgAlt = renderQuote.author + " from Friends TV show";
+
+    // Button props
+    let buttonColor = colors[this.state.buttonColorIndex]
 
     return (
       <div className="quote-box" id="quote-box">
         <div className="text-image-container">
           <QuoteText quote={quote} author={author}/>
-          <Portrait currentBorderColor={currentColor.color} currentImage={currentImage} imgAlt={imgAlt} />
+          <Portrait currentBorderColor={borderColor.color} currentImage={currentImage} imgAlt={imgAlt} />
         </div>
-        <NewQuoteButton clickFunction={this.handleNewRandomQuote} hoverColor={currentColor}/>
+        <NewQuoteButton clickFunction={this.handleNewRandomQuote} hoverColor={buttonColor}/>
       </div>
     );
   }
