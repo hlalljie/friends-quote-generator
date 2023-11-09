@@ -110,6 +110,8 @@ html{
   color: white;
   font-size: 18px;
   font-family: BerlinerGroteskLight, sans-serif;
+  font-weight: 600;
+  letter-spacing: .2rem;
 }
 /*.newQuoteButton:hover{
   background-color: white;

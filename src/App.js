@@ -2,13 +2,13 @@ import './App.css';
 import React from 'react';
 
 var colors = [
-  {color: "#42a2d6", backgroundColor: "#000", name: "lightblue"}, // lightblue
-  {color: "#fff580", backgroundColor: "#000", name: "tan"}, // tan
-  {color: "#00009e", backgroundColor: "#fff", name: "blue"}, // blue
-  {color: "#9a0006", backgroundColor: "#fff", name: "red"}, // red
-  {color: "#ffdc00", backgroundColor: "#000", name: "yellow"}, // yellow
-  {color: "#a876e6", backgroundColor: "#000", name: "violet"},// violet
-  {color: "#ff4238", backgroundColor: "#000", name: "orange"}  // orange
+  {color: "#42a2d6", buttonColor: "color", name: "lightblue"}, // lightblue
+  {color: "#fff580", buttonColor: "color", name: "tan"}, // tan
+  {color: "#00009e", buttonColor: "rgb(76 76 237)", name: "blue"}, // blue
+  {color: "#9a0006", buttonColor: "rgb(193 58 63)", name: "red"}, // red
+  {color: "#ffdc00", buttonColor: "color", name: "yellow"}, // yellow
+  {color: "#a876e6", buttonColor: "color", name: "violet"},// violet
+  {color: "#ff4238", buttonColor: "color", name: "orange"}  // orange
 ] 
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
@@ -136,8 +136,12 @@ class NewQuoteButton extends React.Component {
     let styles = {color: "#fff",  backgroundColor: "#000", borderColor: "#fff"};
 
     if (this.state.hover){
-      styles = {color: this.props.hoverColor.color,  backgroundColor: this.props.hoverColor.backgroundColor, borderColor: this.props.hoverColor.color};
+      styles = {color: this.props.hoverColor.color,  backgroundColor: "#000", borderColor: this.props.hoverColor.color};
+      if (this.props.hoverColor.buttonColor != "color"){
+        styles = {color: this.props.hoverColor.buttonColor,  backgroundColor: "#000", borderColor: this.props.hoverColor.buttonColor};
+      }
     }
+
     return (
       <div className='quoteButtonContainer'>
         <button className="newQuoteButton" id="new-quote" style={styles} onClick={this.props.clickFunction} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>NEW QUOTE</button>
