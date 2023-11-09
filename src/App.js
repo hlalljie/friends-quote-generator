@@ -2,13 +2,13 @@ import './App.css';
 import React from 'react';
 
 var colors = [
-  {color: "#42a2d6", background: "dark", name: "lightblue"}, // lightblue
-  {color: "#fff580", background: "dark", name: "tan"}, // tan
-  {color: "#00009e", background: "color", name: "blue"}, // blue
-  {color: "#9a0006", background: "color", name: "red"}, // red
-  {color: "#ffdc00", background: "dark", name: "yellow"}, // yellow
-  {color: "#a876e6", background: "dark", name: "violet"},// violet
-  {color: "#ff4238", background: "dark", name: "orange"}  // orange
+  {color: "#42a2d6", contrastColor: "dark", name: "lightblue"}, // lightblue
+  {color: "#fff580", contrastColor: "dark", name: "tan"}, // tan
+  {color: "#00009e", contrastColor: "light", name: "blue"}, // blue
+  {color: "#9a0006", contrastColor: "light", name: "red"}, // red
+  {color: "#ffdc00", contrastColor: "dark", name: "yellow"}, // yellow
+  {color: "#a876e6", contrastColor: "light", name: "violet"},// violet
+  {color: "#ff4238", contrastColor: "dark", name: "orange"}  // orange
 ] 
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
@@ -136,15 +136,12 @@ class NewQuoteButton extends React.Component {
     let styles = {color: "#fff",  backgroundColor: "rgba(0, 0, 0, .5)", borderColor: "#fff"};
 
     if (this.state.hover){
-      let currentColor = this.props.hoverColor.color;
-      let currentBackgroundColor = styles.backgroundColor;
-      //let currentBackgroundColor = this.props.hoverColor.backgroundColor;
+      let currentBackgroundColor = this.props.hoverColor.color;
+      let currentColor = "#000";
       let currentBorderColor = this.props.hoverColor.color;
 
-      if (this.props.hoverColor.background == "color"){
-        currentBackgroundColor = this.props.hoverColor.color;
+      if (this.props.hoverColor.contrastColor == "light"){
         currentColor = "#fff";
-        currentBorderColor = "#fff";
       }
 
       styles = {color: currentColor,  backgroundColor: currentBackgroundColor, borderColor: currentBorderColor};
