@@ -1,3 +1,19 @@
+# Friends Quote generator
+A quote generator for the friends tv show.
+
+## Run the Quote Generator
+Fork or clone this repository. This is created on React App so if it doesn't work right away refer to [Getting Started with Create React App](#getting-started-with-create-react-app) below.
+
+## Make Personalized edits
+This application allows for editing quotes, images, and color pallete. Any edits you make will probbaly be in the App.js file in the src folder.
+
+### Add or Edit Quotes
+In App.js there is a global quotes array that contains an object for each quote. Each object contains a string for the quote and a string for the name of the author. IMPORTANT: Make sure your author name is spelled correctly as the name of the author is used to find which image should be displayed. There are already a couple quotes added so you can follow the same format when adding new posts.
+
+### Adding or Editing Images
+Images are all online urls so you can find an image online (or locally) and swap it in for the character you'd like. You can also add new characters by adding a quote and an image for the new character. To swap or add an image you can go to the global "images" object near the top of App.js. Follow the same conventions as the current images to swap in an image of your own. Currently images are centered horizontally and aligned to the top of the image (so the bottom or sides of the image will crop out). To do more custom placement you will need to make changes in App.css though this is not currently supported (it is on the backlog though). To change the backgrouns image for the entire app, you will also need to go to App.css. There, you change the background url in #app to another image url.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
