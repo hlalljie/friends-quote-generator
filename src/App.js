@@ -1,15 +1,15 @@
 import './App.css';
 import React from 'react';
 
-var colors = {
-  lightblue: "#42a2d6",
-  tan: "#fff580",
-  blue: "#00009e",
-  red: "#9a0006",
-  yellow: "#ffdc00",
-  violet: "#a876e6",
-  orange: "#ff4238"
-}
+var colors = [
+  "#42a2d6", // lightblue
+  "#fff580", // tan
+  "#00009e", // blue
+  "#9a0006", // red
+  "#ffdc00", // yellow
+  "#a876e6", // violet
+  "#ff4238"  // orange
+] 
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
   {quote: "I’m not great at the advice. Can I interest you in a sarcastic comment?", author: "Chandler Bing"},
@@ -52,39 +52,85 @@ class QuoteBox extends React.Component {
 
   handleNewRandomQuote(){
     this.setState((function(prevState){
-      let randNum = Math.floor(Math.random() * (quotes.length-1));
-      if (randNum >= prevState.quoteIndex){
-        randNum++;
+      //Find Random Quote Index
+      let randQuoteNum = Math.floor(Math.random() * (quotes.length-1));
+      if (randQuoteNum >= prevState.quoteIndex){
+        randQuoteNum++;
       }
-      if (randNum >= quotes.length){
-        randNum = quotes.length % randNum;
+      if (randQuoteNum >= quotes.length){
+        randQuoteNum = quotes.length % randQuoteNum;
       }
-      return {quoteIndex: randNum};
+      // Find Random Border color index
+      let randColorNum = Math.floor(Math.random() * (colors.length-1));
+      if (randColorNum >= prevState.colorIndex){
+        randColorNum++;
+      }
+      if (randColorNum >= colors.length){
+        randColorNum = colors.length % randColorNum;
+      }
+      return {
+        quoteIndex: randQuoteNum,
+        colorIndex: randColorNum
+      };
     }));
   }
 
   render() {
     let renderQuote = quotes[this.state.quoteIndex];
+    
+    // Quote Props
+    let quote = renderQuote.quote;
+    let author = renderQuote.author
+
+    // Image props
+    let currentBorderColor = colors[this.state.colorIndex];
+    let currentImage = images[renderQuote.author].image;
+    let imgAlt = renderQuote.author + " from Friends TV show"
+    
     return (
       <div className="quote-box" id="quote-box">
         <div className="text-image-container">
-          <div className="quote-text">
-            <h3 className="quote" id="text">{renderQuote.quote}</h3>
-            <p className="author" id="author">{renderQuote.author}</p>
-          </div>
-          <div className="portrait-container" style={{borderColor: images[renderQuote.author].borderColor}}>
-            <div className="portrait-wrapper">
-              <img className="portrait-image" src={images[renderQuote.author].image}/>
-            </div>
-          </div>
+          <QuoteText quote={quote} author={author}/>
+          <Portrait currentBorderColor={currentBorderColor} currentImage={currentImage} imgAlt={imgAlt} />
         </div>
-        <div className='quoteButtonContainer'>
-          <button className="newQuoteButton" id="new-quote" onClick={this.handleNewRandomQuote}>NEW QUOTE</button>
-        </div>
+        <NewQuoteButton clickFunction={this.handleNewRandomQuote}/>
       </div>
     );
   }
 };
+
+function QuoteText(props) {
+  return (
+    <div className="quote-text">
+      <h3 className="quote" id="text">{props.quote}</h3>
+      <p className="author" id="author">{props.author}</p>
+    </div>
+  )
+}
+
+function Portrait(props) {
+  return (
+    <div className="portrait-container" style={{borderColor: props.currentBorderColor}}>
+      <div className="portrait-wrapper">
+        <img className="portrait-image" src={props.currentImage} alt={props.imgAlt}/>
+      </div>
+    </div>
+  );
+}
+
+class NewQuoteButton extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
+      <div className='quoteButtonContainer'>
+        <button className="newQuoteButton" id="new-quote" onClick={this.props.clickFunction}>NEW QUOTE</button>
+      </div>
+    );
+  }
+}
 
 
 export default App;
