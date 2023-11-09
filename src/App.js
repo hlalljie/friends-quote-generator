@@ -1,13 +1,22 @@
 import './App.css';
 import React from 'react';
 
+var colors = {
+  lightblue: "#42a2d6",
+  tan: "#fff580",
+  blue: "#00009e",
+  red: "#9a0006",
+  yellow: "#ffdc00",
+  violet: "#a876e6",
+  orange: "#ff4238"
+}
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
   {quote: "I’m not great at the advice. Can I interest you in a sarcastic comment?", author: "Chandler Bing"}
 ];
 var images = {
-  "Joey Tribbiani": "https://static.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg",
-  "Chandler Bing": "https://kaplan.co.uk/images/default-source/insights/chandler-bing.jpg"
+  "Joey Tribbiani": {image: "https://static.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg", borderColor: colors.red},
+  "Chandler Bing": {image: "https://kaplan.co.uk/images/default-source/insights/chandler-bing.jpg", borderColor: colors.blue}
 }
 function App() {
   return (
@@ -29,9 +38,16 @@ class QuoteBox extends React.Component {
   }
 
   handleNewRandomQuote(){
-    console.log("random quote generating");
-    this.setState(state => ({
-      quoteIndex: Math.floor(Math.random() * quotes.length)
+    this.setState((function(prevState){
+      let randNum = Math.floor(Math.random() * (quotes.length-1));
+      if (randNum >= prevState.quoteIndex){
+        randNum++;
+      }
+      if (randNum >= quotes.length){
+        randNum = quotes.length % randNum;
+      }
+      console.log(randNum);
+      return {quoteIndex: randNum};
     }));
   }
 
@@ -45,39 +61,19 @@ class QuoteBox extends React.Component {
             <h3 className="quote" id="text">{renderQuote.quote}</h3>
             <p className="author" id="author">{renderQuote.author}</p>
           </div>
-          <div className="portrait-container">
+          <div className="portrait-container" style={{borderColor: images[renderQuote.author].borderColor}}>
             <div className="portrait-wrapper">
-              <img className="portrait-image" src={images[renderQuote.author]}/>
+              <img className="portrait-image" src={images[renderQuote.author].image}/>
             </div>
           </div>
         </div>
-        <div>
-          <button className="newQuoteButton" id="new-quote" onClick={this.handleNewRandomQuote}>New Quote</button>
+        <div className='quoteButtonContainer'>
+          <button className="newQuoteButton" id="new-quote" onClick={this.handleNewRandomQuote}>NEW QUOTE</button>
         </div>
       </div>
     );
   }
 };
-/*
-function QuoteBox() {
-  return (
-    <div className="quote-box" id="quote-box">
-      <div className="text-image-container">
-        <div className="quote-text">
-          <h3 className="quote" id="text">{currentQuote.quote}</h3>
-          <p className="author" id="author">{currentQuote.author}</p>
-        </div>
-        <div className="portrait-container">
-          <div className="portrait-wrapper">
-            <img className="portrait-image" src={images[currentQuote.author]}/>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button className="newQuoteButton" id="new-quote" onClick={newRandomQuote()}>New Quote</button>
-      </div>
-    </div>
-  );
-}*/
+
 
 export default App;
