@@ -2,13 +2,13 @@ import './App.css';
 import React from 'react';
 
 var colors = [
-  "#42a2d6", // lightblue
-  "#fff580", // tan
-  "#00009e", // blue
-  "#9a0006", // red
-  "#ffdc00", // yellow
-  "#a876e6", // violet
-  "#ff4238"  // orange
+  {color: "#42a2d6", backgroundColor: "#000", name: "lightblue"}, // lightblue
+  {color: "#fff580", backgroundColor: "#000", name: "tan"}, // tan
+  {color: "#00009e", backgroundColor: "#fff", name: "blue"}, // blue
+  {color: "#9a0006", backgroundColor: "#fff", name: "red"}, // red
+  {color: "#ffdc00", backgroundColor: "#000", name: "yellow"}, // yellow
+  {color: "#a876e6", backgroundColor: "#000", name: "violet"},// violet
+  {color: "#ff4238", backgroundColor: "#000", name: "orange"}  // orange
 ] 
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
@@ -83,17 +83,17 @@ class QuoteBox extends React.Component {
     let author = renderQuote.author
 
     // Image props
-    let currentBorderColor = colors[this.state.colorIndex];
+    let currentColor = colors[this.state.colorIndex];
     let currentImage = images[renderQuote.author].image;
-    let imgAlt = renderQuote.author + " from Friends TV show"
-    
+    let imgAlt = renderQuote.author + " from Friends TV show";
+
     return (
       <div className="quote-box" id="quote-box">
         <div className="text-image-container">
           <QuoteText quote={quote} author={author}/>
-          <Portrait currentBorderColor={currentBorderColor} currentImage={currentImage} imgAlt={imgAlt} />
+          <Portrait currentBorderColor={currentColor.color} currentImage={currentImage} imgAlt={imgAlt} />
         </div>
-        <NewQuoteButton clickFunction={this.handleNewRandomQuote}/>
+        <NewQuoteButton clickFunction={this.handleNewRandomQuote} hoverColor={currentColor}/>
       </div>
     );
   }
@@ -121,12 +121,26 @@ function Portrait(props) {
 class NewQuoteButton extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      hover: false
+    }
+    this.toggleHover = this.toggleHover.bind(this);
+  }
+
+  toggleHover(){
+    this.setState({hover: !this.state.hover});
   }
 
   render(){
+    
+    let styles = {color: "#fff",  backgroundColor: "#000", borderColor: "#fff"};
+
+    if (this.state.hover){
+      styles = {color: this.props.hoverColor.color,  backgroundColor: this.props.hoverColor.backgroundColor, borderColor: this.props.hoverColor.color};
+    }
     return (
       <div className='quoteButtonContainer'>
-        <button className="newQuoteButton" id="new-quote" onClick={this.props.clickFunction}>NEW QUOTE</button>
+        <button className="newQuoteButton" id="new-quote" style={styles} onClick={this.props.clickFunction} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>NEW QUOTE</button>
       </div>
     );
   }

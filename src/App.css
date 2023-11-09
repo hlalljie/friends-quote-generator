@@ -111,11 +111,11 @@ html{
   font-size: 18px;
   font-family: BerlinerGroteskLight, sans-serif;
 }
-.newQuoteButton:hover{
+/*.newQuoteButton:hover{
   background-color: white;
   color: var(--friends-blue);
   border: 2px solid var(--friends-blue);
-}
+}*/
 
 
 .App-logo {
