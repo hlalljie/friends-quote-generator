@@ -9,7 +9,15 @@
 }
 @font-face {
   font-family: friendsFont;
-  src: url("../public/FRIENDS_.TTF");
+  src: url("../public/MINUS_CRE.ttf");
+}
+@font-face {
+  font-family: "BerlinerGroteskLight";
+  src: url("../public/Berliner\ Grotesk\ Light\ Regular.otf");
+}
+html{
+  letter-spacing: .2rem;
+  line-height: 2.5rem;
 }
 
 .App {
@@ -19,6 +27,7 @@
   width: 100%;
   height: 100vh;
   background: url("https://www.thewordfinder.com/friends-font-generator/assets/images/friends-bg.jpg");
+  background-position: 50%;
   background-size: cover;
   display: flex;
   justify-content:center;
@@ -50,10 +59,13 @@
 }
 .quote-text .quote{
   font-size: 30px;
-  font-family: friendsFont;
+  
+  font-family: 'friendsFont';
+  font-weight: 100;
 }
 .quote-text .author{
-  font-size: 20px;
+  font-size: 25px;
+  font-family: BerlinerGroteskLight, sans-serif;
 }
 .portrait-container{
   border-radius: 100%;
@@ -92,14 +104,17 @@
 }
 
 .newQuoteButton{
-  background-color: transparent;
-  border: 1px solid white;
+  background-color: rgba(0, 0, 0, .5);
+  border: 2px solid white;
   padding: .6em 1.2em;
   color: white;
-  font-size: 12px;
-  font-family: friendsFont;
-
-  
+  font-size: 18px;
+  font-family: BerlinerGroteskLight, sans-serif;
+}
+.newQuoteButton:hover{
+  background-color: white;
+  color: var(--friends-blue);
+  border: 2px solid var(--friends-blue);
 }
 
 

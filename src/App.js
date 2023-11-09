@@ -22,12 +22,12 @@ var quotes = [
   {quote: "And I have to live with a boy!", author: "Monica Geller"}
 ];
 var images = {
-  "Joey Tribbiani": {image: "https://static.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg", borderColor: colors.red},
-  "Chandler Bing": {image: "https://kaplan.co.uk/images/default-source/insights/chandler-bing.jpg", borderColor: colors.blue},
+  "Joey Tribbiani": {image: "https://images.entertainment.ie/uploads/2021/05/27152450/Joey-Tribbiani-best-Friends-character.jpg?w=1280&h=768&q=high", borderColor: colors.red},
+  "Chandler Bing": {image: "https://pyxis.nymag.com/v1/imgs/079/792/3ed0d94be0a9bd3d023f00532889bab152-30-chandler-bing.rsquare.w330.jpg", borderColor: colors.blue},
   "Monica Geller": {image: "https://i.insider.com/5c8279ebeb3ce821ef1247a2?width=1500", borderColor: colors.lightblue},
-  "Rachel Green": {image: "https://upload.wikimedia.org/wikipedia/en/e/ec/Jennifer_Aniston_as_Rachel_Green.jpg", borderColor: colors.violet},
-  "Ross Geller": {image: "https://www.thesun.co.uk/wp-content/uploads/2017/08/nintchdbpict000003441959.jpg", borderColor: colors.orange},
-  "Pheobe Buffay": {image: "https://upload.wikimedia.org/wikipedia/en/f/f6/Friendsphoebe.jpg", borderColor: colors.tan}
+  "Rachel Green": {image: "https://i.pinimg.com/736x/9b/e8/dc/9be8dcb0e1a9a8f0c080d798be3cdb58.jpg", borderColor: colors.violet},
+  "Ross Geller": {image: "https://i.insider.com/5a7e1faeaee63c28008b468e?width=700", borderColor: colors.orange},
+  "Pheobe Buffay": {image: "https://staticg.sportskeeda.com/editor/2021/12/8def6-16405297121221-1920.jpg", borderColor: colors.tan}
 }
 function App() {
   return (
@@ -43,9 +43,11 @@ class QuoteBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quoteIndex: 0
+      quoteIndex: Math.floor(Math.random() * (quotes.length))-1,
+      colorIndex: 0
     }
     this.handleNewRandomQuote = this.handleNewRandomQuote.bind(this);
+    this.handleNewRandomQuote();
   }
 
   handleNewRandomQuote(){
@@ -57,13 +59,11 @@ class QuoteBox extends React.Component {
       if (randNum >= quotes.length){
         randNum = quotes.length % randNum;
       }
-      console.log(randNum);
       return {quoteIndex: randNum};
     }));
   }
 
   render() {
-    console.log ("In render, quote = " + this.state.quoteIndex);
     let renderQuote = quotes[this.state.quoteIndex];
     return (
       <div className="quote-box" id="quote-box">
