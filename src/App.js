@@ -2,13 +2,13 @@ import './App.css';
 import React from 'react';
 
 var colors = [
-  {color: "#42a2d6", backgroundColor: "#000", name: "lightblue"}, // lightblue
-  {color: "#fff580", backgroundColor: "#000", name: "tan"}, // tan
-  {color: "#00009e", backgroundColor: "#fff", name: "blue"}, // blue
-  {color: "#9a0006", backgroundColor: "#fff", name: "red"}, // red
-  {color: "#ffdc00", backgroundColor: "#000", name: "yellow"}, // yellow
-  {color: "#a876e6", backgroundColor: "#000", name: "violet"},// violet
-  {color: "#ff4238", backgroundColor: "#000", name: "orange"}  // orange
+  {color: "#42a2d6", background: "dark", name: "lightblue"}, // lightblue
+  {color: "#fff580", background: "dark", name: "tan"}, // tan
+  {color: "#00009e", background: "color", name: "blue"}, // blue
+  {color: "#9a0006", background: "color", name: "red"}, // red
+  {color: "#ffdc00", background: "dark", name: "yellow"}, // yellow
+  {color: "#a876e6", background: "dark", name: "violet"},// violet
+  {color: "#ff4238", background: "dark", name: "orange"}  // orange
 ] 
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
@@ -133,10 +133,21 @@ class NewQuoteButton extends React.Component {
 
   render(){
     
-    let styles = {color: "#fff",  backgroundColor: "#000", borderColor: "#fff"};
+    let styles = {color: "#fff",  backgroundColor: "rgba(0, 0, 0, .5)", borderColor: "#fff"};
 
     if (this.state.hover){
-      styles = {color: this.props.hoverColor.color,  backgroundColor: this.props.hoverColor.backgroundColor, borderColor: this.props.hoverColor.color};
+      let currentColor = this.props.hoverColor.color;
+      let currentBackgroundColor = styles.backgroundColor;
+      //let currentBackgroundColor = this.props.hoverColor.backgroundColor;
+      let currentBorderColor = this.props.hoverColor.color;
+
+      if (this.props.hoverColor.background == "color"){
+        currentBackgroundColor = this.props.hoverColor.color;
+        currentColor = "#fff";
+        currentBorderColor = "#fff";
+      }
+
+      styles = {color: currentColor,  backgroundColor: currentBackgroundColor, borderColor: currentBorderColor};
     }
     return (
       <div className='quoteButtonContainer'>
