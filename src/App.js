@@ -12,11 +12,22 @@ var colors = {
 }
 var quotes = [
   {quote: "HOW YOU DOIN?", author: "Joey Tribbiani"},
-  {quote: "I’m not great at the advice. Can I interest you in a sarcastic comment?", author: "Chandler Bing"}
+  {quote: "I’m not great at the advice. Can I interest you in a sarcastic comment?", author: "Chandler Bing"},
+  {quote: "Well, maybe I don’t need your money. Wait, wait, I said maybe!", author: "Rachel Green"},
+  {quote: "We were on a break!", author: "Ross Geller"},
+  {quote: "See? He’s her lobster.", author: "Pheobe Buffay"},
+  {quote: "Joey doesn’t share food!", author: "Joey Tribbiani"},
+  {quote: "Hi, I’m Chandler. I make jokes when I’m uncomfortable.", author: "Chandler Bing"},
+  {quote: "I wish I could, but I don’t want to.", author: "Pheobe Buffay"},
+  {quote: "And I have to live with a boy!", author: "Monica Geller"}
 ];
 var images = {
   "Joey Tribbiani": {image: "https://static.wikia.nocookie.net/friends/images/f/f5/JoeyTribbiani.jpg", borderColor: colors.red},
-  "Chandler Bing": {image: "https://kaplan.co.uk/images/default-source/insights/chandler-bing.jpg", borderColor: colors.blue}
+  "Chandler Bing": {image: "https://kaplan.co.uk/images/default-source/insights/chandler-bing.jpg", borderColor: colors.blue},
+  "Monica Geller": {image: "https://i.insider.com/5c8279ebeb3ce821ef1247a2?width=1500", borderColor: colors.lightblue},
+  "Rachel Green": {image: "https://upload.wikimedia.org/wikipedia/en/e/ec/Jennifer_Aniston_as_Rachel_Green.jpg", borderColor: colors.violet},
+  "Ross Geller": {image: "https://www.thesun.co.uk/wp-content/uploads/2017/08/nintchdbpict000003441959.jpg", borderColor: colors.orange},
+  "Pheobe Buffay": {image: "https://upload.wikimedia.org/wikipedia/en/f/f6/Friendsphoebe.jpg", borderColor: colors.tan}
 }
 function App() {
   return (
