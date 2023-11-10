@@ -22,7 +22,11 @@ var quotes = [
   {quote: "And I have to live with a boy!", author: "Monica Geller"}
 ];
 var images = {
-  "Joey Tribbiani": ["https://images.entertainment.ie/uploads/2021/05/27152450/Joey-Tribbiani-best-Friends-character.jpg?w=1280&h=768&q=high"],
+  "Joey Tribbiani": [
+    "https://images.entertainment.ie/uploads/2021/05/27152450/Joey-Tribbiani-best-Friends-character.jpg?w=1280&h=768&q=high",
+    "https://play-images-prod-ctf.tech.tvnz.co.nz/api/v1/web/image/3atBtnhXSmU3QwJcbquwZW/e796f9432ed759aeceb67394a88de8d5/friends-characters-joey.jpg.e796f9432ed759aeceb67394a88de8d5.jpg?width=640&height=360",
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bustle.com%2Fentertainment%2Ffriends-fans-spot-joey-tribbiani-continuity-error-reddit-ruins-character&psig=AOvVaw2XlKdAhPCnQG6NUKMwotws&ust=1699659853080000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJjzhsCMuIIDFQAAAAAdAAAAABAJ"
+  ],
   "Chandler Bing": ["https://pyxis.nymag.com/v1/imgs/079/792/3ed0d94be0a9bd3d023f00532889bab152-30-chandler-bing.rsquare.w330.jpg"],
   "Monica Geller": ["https://i.insider.com/5c8279ebeb3ce821ef1247a2?width=1500"],
   "Rachel Green": ["https://i.pinimg.com/736x/9b/e8/dc/9be8dcb0e1a9a8f0c080d798be3cdb58.jpg"],
@@ -44,7 +48,8 @@ class QuoteBox extends React.Component {
     super(props);
     this.state = {
       quoteIndex: Math.floor(Math.random() * (quotes.length))-1,
-      colorIndex: 0
+      colorIndex: 0,
+      imageIndex: 0
     }
     this.handleNewRandomQuote = this.handleNewRandomQuote.bind(this);
     this.handleNewRandomQuote();
@@ -84,7 +89,7 @@ class QuoteBox extends React.Component {
 
     // Image props
     let currentColor = colors[this.state.colorIndex];
-    let currentImage = images[renderQuote.author][0];
+    let currentImage = images[renderQuote.author][this.state.imageIndex];
     let imgAlt = renderQuote.author + " from Friends TV show";
 
     return (
