@@ -1,5 +1,5 @@
 # Friends Quote generator
-A quote generator for the friends tv show.
+Generates quotes from the hit TV show Friends. Take a ride on the nostalgia train.
 
 ## Run the Quote Generator
 Fork or clone this repository. This is created on React App so if it doesn't work right away refer to [Getting Started with Create React App](#getting-started-with-create-react-app) below.
